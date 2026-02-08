@@ -5,27 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle Financeiro</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
-        .container { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
+        /* Estilo do Fundo e Layout */
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: #f0f2f5; 
+            display: flex; 
+            flex-direction: column; /* Faz os elementos empilharem verticalmente */
+            align-items: center; 
+            padding: 40px 20px; 
+        }
+
+        /* Caixa do Formulário */
+        .container { 
+            background: white; 
+            padding: 25px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            width: 100%; 
+            max-width: 450px; 
+            margin-bottom: 20px; /* Espaço para o botão abaixo */
+        }
+
         h2 { text-align: center; color: #1a73e8; margin-bottom: 20px; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: 600; color: #333; }
-        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-size: 15px; }
-        button { width: 100%; padding: 12px; background-color: #1a73e8; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; }
-        button:hover { background-color: #1557b0; }
-        #status { margin-top: 15px; text-align: center; font-weight: bold; display: none; }
-        .link-container {
-            text-align: center;
-            margin-top: 20px;
-            width: 100%;
-            max-width: 450px;
-        }
         
+        input, select { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+            box-sizing: border-box; 
+            font-size: 15px; 
+        }
+
+        button#btnEnviar { 
+            width: 100%; 
+            padding: 12px; 
+            background-color: #1a73e8; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: bold; 
+            transition: 0.3s;
+        }
+
+        button#btnEnviar:hover { background-color: #1557b0; }
+
+        /* Estilo do Botão de Relatório (Fora da Div) */
         .btn-relatorio {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #ffffff;
-            color: #1a73e8;.btn-relatorio {
             display: block;
             width: 100%;
             max-width: 450px;
@@ -89,7 +119,7 @@
     </form>
 </div>
 
-<a href="COLE_AQUI_O_LINK_DA_SUA_PLANILHA" target="_blank" class="btn-relatorio">📊 Abrir Relatório / Planilha</a>
+<a href="https://lookerstudio.google.com/reporting/f949c448-9a92-4ba5-b8ca-8a69ca18249f" target="_blank" class="btn-relatorio">📊 Abrir Relatório / Planilha</a>
     
 <script>
     // COLE SUA URL DO GOOGLE APPS SCRIPT ABAIXO
