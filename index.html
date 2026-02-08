@@ -3,32 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro Financeiro</title>
+    <title>Controle Financeiro</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #eef2f3; display: flex; justify-content: center; padding: 40px; }
-        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); width: 100%; max-width: 400px; }
-        h2 { text-align: center; color: #2c3e50; margin-bottom: 25px; }
-        .form-group { margin-bottom: 18px; }
-        label { display: block; margin-bottom: 8px; font-weight: 600; color: #444; }
-        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
-        button { width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; transition: 0.3s; }
-        button:hover { background-color: #0056b3; }
-        #status { margin-top: 15px; text-align: center; font-size: 14px; display: none; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
+        .container { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
+        h2 { text-align: center; color: #1a73e8; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; color: #333; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-size: 15px; }
+        button { width: 100%; padding: 12px; background-color: #1a73e8; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; }
+        button:hover { background-color: #1557b0; }
+        #status { margin-top: 15px; text-align: center; font-weight: bold; display: none; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Registrar Gasto</h2>
-    <form id="meuFormulario">
+    <h2>Nova Movimentação</h2>
+    <form id="formFinanceiro">
         <div class="form-group">
-            <label>O que comprou?</label>
-            <input type="text" name="compra" required>
+            <label>Descrição</label>
+            <input type="text" name="descricao" placeholder="Ex: Salário, Supermercado..." required>
         </div>
 
         <div class="form-group">
             <label>Valor (R$)</label>
-            <input type="number" name="valor" step="0.01" required>
+            <input type="number" name="valor" step="0.01" placeholder="0,00" required>
+        </div>
+
+        <div class="form-group">
+            <label>Tipo de Movimentação</label>
+            <select name="tipo" required>
+                <option value="" disabled selected>Selecione o tipo</option>
+                <option value="Entrada">Entrada</option>
+                <option value="Saída">Saída</option>
+            </select>
         </div>
 
         <div class="form-group">
@@ -38,29 +47,31 @@
                 <option value="Dinheiro">Dinheiro</option>
                 <option value="Cartão de Débito">Cartão de Débito</option>
                 <option value="Cartão de Crédito">Cartão de Crédito</option>
+                <option value="Outro">Outro</option>
             </select>
         </div>
 
-        <button type="submit" id="btnEnviar">Enviar para Planilha</button>
-        <div id="status">Enviando...</div>
+        <button type="submit" id="btnEnviar">Salvar na Planilha</button>
+        <div id="status"></div>
     </form>
 </div>
 
 <script>
-    const urlScript = 'https://script.google.com/macros/s/AKfycbx35LVFtwdVAtfVNmeeinDhzhpexTx-vypFZ2udhaYchBqq6hUXRapgIgOQItA59jFe/exec';
-    const form = document.getElementById('meuFormulario');
+    // COLE SUA URL DO GOOGLE APPS SCRIPT ABAIXO
+    const urlScript = 'https://script.google.com/macros/s/AKfycbz5R_wdHIM4NbexFCUJp-r7XhA-8qNmlB-iBTh6Cx8/dev';
+    
+    const form = document.getElementById('formFinanceiro');
     const status = document.getElementById('status');
 
     form.addEventListener('submit', e => {
         e.preventDefault();
         status.style.display = 'block';
-        status.innerText = 'Enviando dados...';
+        status.innerText = 'Enviando...';
         status.style.color = '#666';
 
-        // Envia os dados usando Fetch API
         fetch(urlScript, {
             method: 'POST',
-            mode: 'no-cors', // Necessário para evitar erros de redirecionamento do Google
+            mode: 'no-cors',
             body: new FormData(form)
         })
         .then(() => {
@@ -69,9 +80,8 @@
             form.reset();
         })
         .catch(error => {
-            status.innerText = '❌ Erro ao enviar.';
+            status.innerText = '❌ Erro na conexão.';
             status.style.color = 'red';
-            console.error('Erro!', error.message);
         });
     });
 </script>
