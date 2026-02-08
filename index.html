@@ -14,6 +14,30 @@
         button { width: 100%; padding: 12px; background-color: #1a73e8; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; }
         button:hover { background-color: #1557b0; }
         #status { margin-top: 15px; text-align: center; font-weight: bold; display: none; }
+        .link-container {
+            text-align: center;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 450px;
+        }
+        
+        .btn-relatorio {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            color: #1a73e8;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            border: 1px solid #1a73e8;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-relatorio:hover {
+            background-color: #1a73e8;
+            color: white;
+            box-shadow: 0 2px 8px rgba(26, 115, 232, 0.4);
+        }
     </style>
 </head>
 <body>
@@ -56,6 +80,12 @@
     </form>
 </div>
 
+<div class="link-container">
+    <a href="https://lookerstudio.google.com/reporting/f949c448-9a92-4ba5-b8ca-8a69ca18249f" target="_blank" class="btn-relatorio">
+        📊 Relatório
+    </a>
+</div>
+    
 <script>
     // COLE SUA URL DO GOOGLE APPS SCRIPT ABAIXO
     const urlScript = 'https://script.google.com/macros/s/AKfycbx35LVFtwdVAtfVNmeeinDhzhpexTx-vypFZ2udhaYchBqq6hUXRapgIgOQItA59jFe/exec';
@@ -86,11 +116,7 @@
     });
 </script>
 
-<div class="link-container">
-    <a href="https://lookerstudio.google.com/reporting/f949c448-9a92-4ba5-b8ca-8a69ca18249f" target="_blank" class="btn-relatorio">
-        📊 Relatório
-    </a>
-</div>
+
     
 </body>
 </html>
